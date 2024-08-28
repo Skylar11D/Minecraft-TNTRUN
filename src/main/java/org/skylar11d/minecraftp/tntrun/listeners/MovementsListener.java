@@ -35,13 +35,14 @@ public class MovementsListener implements Listener {
         if(gm.getGameState() != GameState.ACTIVE)
             return;
 
-        if (sandLoc.getBlock().getType() == Material.SAND) {
-            if (tntLoc.getBlock().getType() == Material.TNT) {
-                Bukkit.getPluginManager().callEvent(new PlayerRunEvent(runner));
-            }
-        }
+        if ((sandLoc.getBlock().getType() != Material.SAND) || (sandLoc.getBlock().getType() != Material.GRAVEL))
+            return;
+        if (tntLoc.getBlock().getType() != Material.TNT)
+            return;
 
-        if(p.getLocation().getY() < -settings.getInt("void-height")){
+        Bukkit.getPluginManager().callEvent(new PlayerRunEvent(runner));
+
+        if(p.getLocation().getY() < settings.getInt("void-height")){
             p.teleport(p.getLocation().add(0,15, 0));
             Bukkit.getWorld(p.getWorld().getName()).strikeLightning(p.getLocation().add(0,3,0));
             Bukkit.broadcastMessage(ChatColor.RED + p.getName() + ChatColor.YELLOW + " has been eliminated!");

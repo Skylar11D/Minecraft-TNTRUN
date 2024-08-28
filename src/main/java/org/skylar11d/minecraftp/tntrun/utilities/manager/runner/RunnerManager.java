@@ -53,4 +53,8 @@ public class RunnerManager {
         );
     }
 
+    public boolean isRegistered(Runner r){
+        return getRunners().containsKey(r);
+    }
+
 }

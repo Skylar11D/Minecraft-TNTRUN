@@ -1,2 +1,4 @@
-#The level of Y as you fall into the void that you'll get killed after passing it
-void-height: 15 #Numbers are already converted to negative
+#The level of Y axis as you fall into the void where you'll get killed after passing it.
+void-height: 15
+#Number of logical processors to perform some operations inside the plugin.
+threads: 6 #replace by -1 to consume all available threads
