@@ -15,7 +15,6 @@ import org.skylar11d.minecraftp.tntrun.utilities.plugin.Provider;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.function.Predicate;
-import java.util.logging.Logger;
 
 /**
  *  @Author Skylar11D
@@ -70,7 +69,6 @@ public class Main extends JavaPlugin {
         return ChatColor.translateAlternateColorCodes('&', message);
     }
 
-    @SuppressWarnings(value = "unused")
     public GameManager getGameManager() {
         return gameManager;
     }

@@ -36,9 +36,4 @@ public class MainProvider implements Provider {
         return iMySQL;
     }
 
-    /*@Override
-    public void onDisable() {
-        Provider.super.onDisable();
-    }*/
-
 }
