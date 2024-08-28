@@ -3,6 +3,7 @@ package org.skylar11d.minecraftp.tntrun.utilities.manager.runner;
 import net.minecraft.server.v1_8_R3.IChatBaseComponent;
 import net.minecraft.server.v1_8_R3.PacketPlayOutChat;
 import org.bukkit.Bukkit;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
@@ -10,6 +11,7 @@ import org.bukkit.potion.PotionEffectType;
 import org.skylar11d.minecraftp.tntrun.Main;
 import org.skylar11d.minecraftp.tntrun.utilities.assets.TitleType;
 import org.skylar11d.minecraftp.tntrun.utilities.board.FastBoard;
+import org.skylar11d.minecraftp.tntrun.utilities.config.ConfigType;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -33,16 +35,17 @@ public interface Runner {
         SimpleDateFormat simplifiedDate = new SimpleDateFormat("dd/MM/yyyy");
         String date = simplifiedDate.format(new Date());
         FastBoard fastBoard = new FastBoard(getPlayer());
+        FileConfiguration settings = Main.getInstance().getConfigManager().getConfig(ConfigType.SETTINGS);
 
         fastBoard.updateTitle(Main.C("&c&lTNT&4&lRUN"));
         fastBoard.updateLines(
                 Main.C("&7"+date),
                 "",
-                Main.C("&c&l┃ &fLoses: &c"/*+getLoses()*/),
-                Main.C("&c&l┃ &fVictories: &a"/*+getVictories()*/),
+                Main.C("&c&l┃ &fLoses: &c"+getLoses()),
+                Main.C("&c&l┃ &fVictories: &a"+getVictories()),
                 Main.C("&c&l┃ &fAlive players: &c0"),
                 Main.C(""),
-                Main.C("&7play.example.gg")
+                Main.C("&7"+settings.getString("server-ipaddress"))
         );
 
     }
@@ -110,8 +113,8 @@ public interface Runner {
                     "INSERT INTO runners_data (VICTORIES, LOSES, UUID) VALUES (?, ?, ?)"
             );
 
-            preparedStatement.setInt(1, 0);
-            preparedStatement.setInt(2, 0);
+            preparedStatement.setLong(1, 0);
+            preparedStatement.setLong(2, 0);
             preparedStatement.setString(3, getPlayer().getUniqueId().toString());
 
             preparedStatement.executeUpdate();
@@ -171,11 +174,11 @@ public interface Runner {
         return a;
     }
 
-    default void setVictories(int quantity){
+    default void setVictories(long quantity){
         try {
             Connection conn = Main.getInstance().getProvider().getMySQL().getConnection();
             PreparedStatement pStatement = conn.prepareStatement("UPDATE runners_data SET 'VICTORIES'=? WHERE UUID=?");
-            pStatement.setInt(1, quantity);
+            pStatement.setLong(1, quantity);
             pStatement.setString(2, getPlayer().getUniqueId().toString());
             pStatement.executeUpdate();
         } catch (SQLException e) {
@@ -183,11 +186,11 @@ public interface Runner {
         }
     }
 
-    default void setLoses(int quantity){
+    default void setLoses(long quantity){
         try {
             Connection conn = Main.getInstance().getProvider().getMySQL().getConnection();
             PreparedStatement pStatement = conn.prepareStatement("UPDATE runners_data SET 'LOSES'=? WHERE UUID=?");
-            pStatement.setInt(1, quantity);
+            pStatement.setLong(1, quantity);
             pStatement.setString(2, getPlayer().getUniqueId().toString());
             pStatement.executeUpdate();
         } catch (SQLException e) {

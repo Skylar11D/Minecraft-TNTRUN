@@ -2,3 +2,4 @@
 void-height: 15
 #Number of logical processors to perform some operations inside the plugin.
 threads: 6 #replace by -1 to consume all available threads
+server-ipaddress: example.net
