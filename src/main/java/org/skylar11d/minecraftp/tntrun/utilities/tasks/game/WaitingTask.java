@@ -9,22 +9,27 @@ import org.skylar11d.minecraftp.tntrun.utilities.assets.TitleType;
 import org.skylar11d.minecraftp.tntrun.utilities.manager.game.GameManager;
 import org.skylar11d.minecraftp.tntrun.utilities.manager.game.GameState;
 import org.skylar11d.minecraftp.tntrun.utilities.manager.runner.Runner;
+import org.skylar11d.minecraftp.tntrun.utilities.manager.runner.RunnerManager;
+import org.skylar11d.minecraftp.tntrun.utilities.tasks.GameTask;
 
 import java.util.Map;
 
-public class WaitingTask extends BukkitRunnable {
+public class WaitingTask extends GameTask {
 
-    int counter = 20;
-    GameManager manager;
+    private int counter = 20;
+    private GameManager manager;
+    private RunnerManager runnerManager;
 
-    public WaitingTask(GameManager manager){this.manager = manager;}
+    public WaitingTask(GameManager manager){
+        super(manager);
+    }
 
     @Override
     public void run() {
         Location startingArena = Main.getInstance().getLocations().of("starting");
 
         int size = Bukkit.getServer().getOnlinePlayers().size();
-        Map<Runner, BukkitRunnable> runners = Main.getInstance().getRunnerManager().getRunners();
+        Map<Runner, BukkitRunnable> runners = runnerManager.getRunners();
 
         if(size < 2){
             counter = 20;

@@ -9,18 +9,19 @@ import org.skylar11d.minecraftp.tntrun.utilities.manager.game.GameManager;
 import org.skylar11d.minecraftp.tntrun.utilities.manager.game.GameState;
 import org.skylar11d.minecraftp.tntrun.utilities.manager.runner.Runner;
 import org.skylar11d.minecraftp.tntrun.utilities.manager.runner.RunnerManager;
+import org.skylar11d.minecraftp.tntrun.utilities.tasks.GameTask;
 
 import java.util.Set;
 
-public class StartingTask extends BukkitRunnable {
+public class StartingTask extends GameTask {
 
-    GameManager gameManager;
-    RunnerManager runnerManager;
-    int counter = 10;
-    int size = Bukkit.getOnlinePlayers().size();
+    private GameManager gameManager;
+    private final RunnerManager runnerManager;
+    private int counter = 10;
+    private int size = Bukkit.getOnlinePlayers().size();
 
-    public StartingTask(GameManager gm){
-        this.gameManager = gm;
+    public StartingTask(GameManager gameManager){
+        super(gameManager);
         this.runnerManager = Main.getInstance().getRunnerManager();
     }
 

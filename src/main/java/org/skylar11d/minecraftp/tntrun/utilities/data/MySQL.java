@@ -40,6 +40,8 @@ public class MySQL implements IMySQL {
                     Bukkit.getLogger().log(Level.INFO, "Checking 'runners_data' table existence..");
                     PreparedStatement preparedStatement = getConnection().prepareStatement("CREATE TABLE runners_data IF NOT EXISTS" +
                             " (VICTORIES BIGINT(100), LOSES BIGINT(100), UUID VARCHAR(35))");
+                    preparedStatement.execute();
+                    preparedStatement.close();
                     Bukkit.getLogger().log(Level.INFO, "database-name: "+database.toUpperCase());
                     Bukkit.getLogger().log(Level.INFO, "host: "+host+":"+port);
                 } catch (ClassNotFoundException | SQLException e){e.printStackTrace();}

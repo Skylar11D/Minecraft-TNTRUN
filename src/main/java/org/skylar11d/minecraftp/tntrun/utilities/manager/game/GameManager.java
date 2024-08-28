@@ -23,24 +23,7 @@ public class GameManager {
         if(gameState == this.gameState)return;
         this.gameState = gameState;
 
-        switch (gameState){
-            case WAITING: {
-                new WaitingTask(this).runTaskTimer(plugin, 1, 20*1);
-                break;
-            }
-            case STARTING: {
-                new StartingTask(this).runTaskTimer(plugin, 1, 20);
-                break;
-            }
-            case ACTIVE: {
-                new ActiveTask(this).runTaskTimer(plugin, 1, 20);
-                break;
-            }
-            case ENDING: {
-                new EndingTask(this).runTaskTimer(plugin, 1, 20);
-                break;
-            }
-        }
+        getGameState().getTask().runTaskTimer(plugin,0, 20);
 
     }
 }

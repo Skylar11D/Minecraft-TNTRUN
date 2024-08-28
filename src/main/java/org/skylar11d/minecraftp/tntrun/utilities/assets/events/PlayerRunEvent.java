@@ -1,7 +1,6 @@
 package org.skylar11d.minecraftp.tntrun.utilities.assets.events;
 
 import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
@@ -15,11 +14,11 @@ import org.skylar11d.minecraftp.tntrun.utilities.manager.runner.Runner;
 public class PlayerRunEvent extends Event implements Cancellable {
 
     private boolean cancelled = false;
-    Runner r;
+    Runner runner;
 
     public PlayerRunEvent(Runner runner){
 
-        this.r = runner;
+        this.runner = runner;
     }
 
     @Override
@@ -30,11 +29,11 @@ public class PlayerRunEvent extends Event implements Cancellable {
     @Override
     public void setCancelled(boolean b) {
         cancelled = b;
-        Bukkit.getServer().getScheduler().cancelTask(Main.getInstance().getRunnerManager().getRunners().get(r).getTaskId());
+        Bukkit.getServer().getScheduler().cancelTask(Main.getInstance().getRunnerManager().getRunners().get(runner).getTaskId());
     }
 
     public Runner getRunner() {
-        return r;
+        return runner;
     }
 
 

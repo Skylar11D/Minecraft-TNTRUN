@@ -36,28 +36,9 @@ public class ConfigManager {
 
         } catch (IOException e){
             e.printStackTrace();
-            Bukkit.getLogger().log(Level.WARNING, "[ConfigManager] Failed to load the plugin's files");
+            Bukkit.getLogger().severe("Failed to load the plugin's files");
         }
     }
-
-    /*public void initialize(){
-        database = new File(Main.getInstance().getDataFolder() + "/database.yml");
-        locations = new File(Main.getInstance().getDataFolder() + "/locations.yml");
-        settings = new File(Main.getInstance().getDataFolder() + "/settings.yml");
-
-
-        try {
-
-            if(!database.exists())
-                Files.copy(Main.getInstance().getResource("database.yml"), database.toPath());
-            if(!locations.exists())
-                Files.copy(Main.getInstance().getResource("locations.yml"), locations.toPath());
-            if(!settings.exists())
-                Files.copy(Main.getInstance().getResource("settings.yml"), settings.toPath());
-
-        } catch (IOException e){e.printStackTrace();}
-
-    }*/
 
     public FileConfiguration getConfig(ConfigType type){
 

@@ -8,16 +8,17 @@ import org.skylar11d.minecraftp.tntrun.utilities.manager.game.GameManager;
 import org.skylar11d.minecraftp.tntrun.utilities.manager.game.GameState;
 import org.skylar11d.minecraftp.tntrun.utilities.manager.runner.Runner;
 import org.skylar11d.minecraftp.tntrun.utilities.manager.runner.RunnerManager;
+import org.skylar11d.minecraftp.tntrun.utilities.tasks.GameTask;
 
 import java.util.Set;
 
-public class ActiveTask extends BukkitRunnable {
+public class ActiveTask extends GameTask {
 
-    GameManager gameManager;
-    RunnerManager runnerManager;
+    private GameManager gameManager;
+    private RunnerManager runnerManager;
 
-    public ActiveTask(GameManager gm){
-        this.gameManager = gm;
+    public ActiveTask(GameManager gameManager){
+        super(gameManager);
         this.runnerManager = Main.getInstance().getRunnerManager();
     }
 
