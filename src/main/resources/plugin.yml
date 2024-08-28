@@ -2,6 +2,7 @@ name: TNTRUN
 main: org.skylar11d.minecraftp.tntrun.Main
 version: 1.0
 author: Skylar11D
+website: sk1.xyz
 
 commands:
   arena:

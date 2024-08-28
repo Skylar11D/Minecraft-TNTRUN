@@ -15,9 +15,8 @@ public class ActiveTask extends GameTask {
 
     private RunnerManager runnerManager;
 
-    public ActiveTask(GameManager gameManager){
-        super(gameManager);
-        this.runnerManager = Main.getInstance().getRunnerManager();
+    public ActiveTask(GameManager gameManager, RunnerManager runnerManager){
+        super(gameManager, runnerManager);
     }
 
     @Override

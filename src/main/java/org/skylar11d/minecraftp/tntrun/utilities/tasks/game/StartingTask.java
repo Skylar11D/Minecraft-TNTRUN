@@ -15,14 +15,11 @@ import java.util.Set;
 
 public class StartingTask extends GameTask {
 
-    private GameManager gameManager;
-    private final RunnerManager runnerManager;
     private int counter = 10;
     private int size = Bukkit.getOnlinePlayers().size();
 
-    public StartingTask(GameManager gameManager){
-        super(gameManager);
-        this.runnerManager = Main.getInstance().getRunnerManager();
+    public StartingTask(GameManager gameManager, RunnerManager runnerManager){
+        super(gameManager, runnerManager);
     }
 
     @Override

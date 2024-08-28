@@ -18,8 +18,6 @@ import java.util.concurrent.Executors;
 
 public class ConnectionListener implements Listener {
 
-    private ExecutorService pool = Executors.newCachedThreadPool();
-
     @EventHandler
     public void onJoin(PlayerJoinEvent e){
         Player p = e.getPlayer();
@@ -28,7 +26,7 @@ public class ConnectionListener implements Listener {
         Location waitingArena = Main.getInstance().getLocations().of("waiting");
         e.setJoinMessage(null);
 
-        pool.execute(() -> {
+        Main.getInstance().getPool().execute(() -> {
 
             try {
                 p.teleport(waitingArena);

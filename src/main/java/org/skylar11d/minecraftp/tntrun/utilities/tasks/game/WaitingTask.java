@@ -17,11 +17,9 @@ import java.util.Map;
 public class WaitingTask extends GameTask {
 
     private int counter = 20;
-    private GameManager manager;
-    private RunnerManager runnerManager;
 
-    public WaitingTask(GameManager manager){
-        super(manager);
+    public WaitingTask(GameManager manager, RunnerManager runnerManager){
+        super(manager, runnerManager);
     }
 
     @Override
@@ -48,7 +46,7 @@ public class WaitingTask extends GameTask {
             }
 
             if(counter == 0){
-                manager.setGameState(GameState.STARTING);
+                gameManager.setGameState(GameState.STARTING);
                 runners.keySet().forEach(r -> r.getPlayer().teleport(startingArena));
                 cancel();
 
